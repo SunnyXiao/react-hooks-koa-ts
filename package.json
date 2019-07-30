@@ -1,5 +1,5 @@
 {
-  "name": "cdfang-spider",
+  "name": "react-hooks-koa-ts",
   "version": "2.11.19",
   "description": "react-hooks+koa+typesript",
   "main": "index.js",
@@ -30,14 +30,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yhlben/cdfang-spider.git"
+    "url": "git+https://github.com/SunnyXiao/react-hooks-koa-ts.git"
   },
   "author": "yhlben",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yhlben/cdfang-spider/issues"
+    "url": "https://github.com/SunnyXiao/react-hooks-koa-ts/issues"
   },
-  "homepage": "https://github.com/yhlben/cdfang-spider#readme",
+  "homepage": "https://github.com/SunnyXiao/react-hooks-koa-ts#readme",
   "dependencies": {
     "@antv/data-set": "^0.10.2",
     "antd": "^3.20.0",
