@@ -1,8 +1,4 @@
-# cdfang-spider
-
-[![Build Status](https://www.travis-ci.org/yhlben/cdfang-spider.svg?branch=master)](https://www.travis-ci.org/yhlben/cdfang-spider)
-[![codecov](https://codecov.io/gh/yhlben/cdfang-spider/branch/master/graph/badge.svg)](https://codecov.io/gh/yhlben/cdfang-spider)
-[![David](https://img.shields.io/david/yhlben/cdfang-spider.svg)](https://david-dm.org/yhlben/cdfang-spider)
+# react-hooks-koa-ts demo
 
 > 成都房协网数据分析
 
@@ -10,6 +6,7 @@
 
 ## Preview
 
+参照
 在线预览：[https://cdfangyuan.cn](https://cdfangyuan.cn)
 
 源代码：[https://github.com/yhlben/cdfang-spider](https://github.com/yhlben/cdfang-spider)
@@ -43,16 +40,16 @@
 - Jest：测试前后端项目，单元测试，API 测试等。
 - Typescript：为 JS 提供良好的类型检查功能，能编译出高质量的 JS 代码。
 
-项目没有使用脚手架工具搭建，都是一步一步配置而成。具体的搭建流程：[项目选型与环境搭建](https://github.com/yhlben/cdfang-spider/blob/master/Introduction.md)。
+项目没有使用脚手架工具搭建，都是一步一步配置而成。具体的搭建流程：[项目选型与环境搭建](https://github.com/SunnyXiao/react-hooks-koa-ts/blob/master/Introduction.md)。
 
 ## Start
 
 ```shell
 # clone with Git Bash
-git clone https://github.com/yhlben/cdfang-spider.git
+git clone https://github.com/SunnyXiao/react-hooks-koa-ts.git
 
 # change directory
-cd cdfang-spider
+cd react-hooks-koa-ts
 
 # install dependencies
 npm i
@@ -68,19 +65,13 @@ npm run build
 
 ```shell
 # clone with Git Bash
-git clone https://github.com/yhlben/cdfang-spider.git
+git clone https://github.com/SunnyXiao/react-hooks-koa-ts.git
 
 # change directory
-cd cdfang-spider/docker
+cd eact-hooks-koa-ts/docker
 
 # run docker containers. It may take a long time.
 docker-compose up -d
 
-# server running at localhost:8082
+# server running at localhost:6068
 ```
-
-## License
-
-[MIT](https://github.com/yhlben/cdfang-spider/blob/master/LICENSE)
-
-Copyright (c) 2018-present yhlben
