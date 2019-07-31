@@ -78,10 +78,10 @@ function getRandomId(): string {
 }
 
 // 获取基础柱状图数据
-function getBasicColumnGraphData(allData: cdFang.IhouseData[]) {
-  const areasGroup = _.groupBy(allData, (item: cdFang.IhouseData) => item.area);
-  const chartHouseData: cdFang.IareaHouse[] = [];
-  const chartBuilderData: cdFang.IareaBuilder[] = [];
+function getBasicColumnGraphData(allData: nFang.IhouseData[]) {
+  const areasGroup = _.groupBy(allData, (item: nFang.IhouseData) => item.area);
+  const chartHouseData: nFang.IareaHouse[] = [];
+  const chartBuilderData: nFang.IareaBuilder[] = [];
   Object.keys(areasGroup).forEach(key => {
     chartHouseData.push({
       [AREA]: key,
@@ -108,7 +108,7 @@ function getYearList(): number[] {
 }
 
 const util = {
-  getAllInfo(allData: cdFang.IhouseData[]): IhouseInfo {
+  getAllInfo(allData: nFang.IhouseData[]): IhouseInfo {
     const houseNumber = _.sumBy(allData, 'number');
     const buildNumber = allData.length;
     return {
@@ -116,12 +116,12 @@ const util = {
       buildNumber
     };
   },
-  getThisWeekInfo(allData: cdFang.IhouseData[]): IhouseInfo {
+  getThisWeekInfo(allData: nFang.IhouseData[]): IhouseInfo {
     const thisWeekStart = dayjs().set('day', 0);
     const thisWeekEnd = dayjs().set('day', 7);
     const weekData = _.filter(
       allData,
-      (item: cdFang.IhouseData): boolean => {
+      (item: nFang.IhouseData): boolean => {
         const beginTime = dayjs(item.beginTime);
         return beginTime > thisWeekStart && beginTime < thisWeekEnd;
       }
@@ -140,12 +140,12 @@ const util = {
       increaseBuildNumberString: getIncreaseNumber(increaseBuildNumber)
     };
   },
-  getThisMonthInfo(allData: cdFang.IhouseData[]): IhouseInfo {
+  getThisMonthInfo(allData: nFang.IhouseData[]): IhouseInfo {
     const thisMonthStart = dayjs().startOf('month');
     const thisMonthEnd = dayjs().endOf('month');
     const weekData = _.filter(
       allData,
-      (item: cdFang.IhouseData): boolean => {
+      (item: nFang.IhouseData): boolean => {
         const beginTime = dayjs(item.beginTime);
         return beginTime > thisMonthStart && beginTime < thisMonthEnd;
       }
@@ -164,12 +164,12 @@ const util = {
       increaseBuildNumberString: getIncreaseNumber(increaseBuildNumber)
     };
   },
-  getThisQuarterInfo(allData: cdFang.IhouseData[]): IhouseInfo {
+  getThisQuarterInfo(allData: nFang.IhouseData[]): IhouseInfo {
     const time = getCurrentQuarter();
     const { thisQuarterStart, thisQuarterEnd } = time;
     const quarterData = _.filter(
       allData,
-      (item: cdFang.IhouseData): boolean => {
+      (item: nFang.IhouseData): boolean => {
         const beginTime = dayjs(item.beginTime);
         return beginTime > thisQuarterStart && beginTime < thisQuarterEnd;
       }
@@ -188,7 +188,7 @@ const util = {
       increaseBuildNumberString: getIncreaseNumber(increaseBuildNumber)
     };
   },
-  getLastWeekInfo(allData: cdFang.IhouseData[]): IhouseInfo {
+  getLastWeekInfo(allData: nFang.IhouseData[]): IhouseInfo {
     const thisWeekStart = dayjs()
       .set('day', 0)
       .add(-7, 'day');
@@ -197,7 +197,7 @@ const util = {
       .add(-7, 'day');
     const weekData = _.filter(
       allData,
-      (item: cdFang.IhouseData): boolean => {
+      (item: nFang.IhouseData): boolean => {
         const beginTime = dayjs(item.beginTime);
         return beginTime > thisWeekStart && beginTime < thisWeekEnd;
       }
@@ -209,7 +209,7 @@ const util = {
       buildNumber
     };
   },
-  getLastMonthInfo(allData: cdFang.IhouseData[]): IhouseInfo {
+  getLastMonthInfo(allData: nFang.IhouseData[]): IhouseInfo {
     const thisMonthStart = dayjs()
       .add(-1, 'month')
       .startOf('month');
@@ -218,7 +218,7 @@ const util = {
       .endOf('month');
     const weekData = _.filter(
       allData,
-      (item: cdFang.IhouseData): boolean => {
+      (item: nFang.IhouseData): boolean => {
         const beginTime = dayjs(item.beginTime);
         return beginTime > thisMonthStart && beginTime < thisMonthEnd;
       }
@@ -230,12 +230,12 @@ const util = {
       buildNumber
     };
   },
-  getLastQuarterInfo(allData: cdFang.IhouseData[]): IhouseInfo {
+  getLastQuarterInfo(allData: nFang.IhouseData[]): IhouseInfo {
     const time = getCurrentQuarter(dayjs().add(-3, 'month'));
     const { thisQuarterStart, thisQuarterEnd } = time;
     const quarterData = _.filter(
       allData,
-      (item: cdFang.IhouseData): boolean => {
+      (item: nFang.IhouseData): boolean => {
         const beginTime = dayjs(item.beginTime);
         return beginTime > thisQuarterStart && beginTime < thisQuarterEnd;
       }

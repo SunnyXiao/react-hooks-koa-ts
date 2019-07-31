@@ -42,7 +42,7 @@ function initGraphQL(app: Koa): void {
       allHouses: async (
         _parent: never, // 不使用第一个变量
         args: Iyear
-      ): Promise<cdFang.IhouseData[]> => {
+      ): Promise<nFang.IhouseData[]> => {
         let query = {};
         if (args.year !== 0) {
           const reg = new RegExp(`^${args.year}`);

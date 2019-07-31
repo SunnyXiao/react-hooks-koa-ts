@@ -21,7 +21,7 @@ const PastYear: React.FunctionComponent<RouteComponentProps> = () => {
     AppContext
   );
 
-  const areasGroup = _.groupBy(allData, (item: cdFang.IhouseData) => item.area);
+  const areasGroup = _.groupBy(allData, (item: nFang.IhouseData) => item.area);
   const areasList = Object.keys(areasGroup);
 
   // 选中的 key 不在区域列表中

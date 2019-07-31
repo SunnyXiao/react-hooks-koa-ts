@@ -9,7 +9,7 @@ const { useContext } = React;
 
 const CommonTable: React.FunctionComponent = () => {
   const { allData } = useContext(AppContext);
-  const areas = _.groupBy(allData, (item: cdFang.IhouseData) => item.area);
+  const areas = _.groupBy(allData, (item: nFang.IhouseData) => item.area);
   const areasList = Object.keys(areas);
   const nameFilter = areasList.map(item => ({
     text: item,
@@ -23,7 +23,7 @@ const CommonTable: React.FunctionComponent = () => {
       key: 'area',
       filters: nameFilter,
       filterMultiple: true,
-      onFilter: (value: string, datalist: cdFang.IhouseData) =>
+      onFilter: (value: string, datalist: nFang.IhouseData) =>
         datalist.area.indexOf(value) === 0
     },
     {
@@ -36,21 +36,21 @@ const CommonTable: React.FunctionComponent = () => {
       title: '住房套数',
       dataIndex: 'number',
       key: 'number',
-      sorter: (a: cdFang.IhouseData, b: cdFang.IhouseData): boolean =>
+      sorter: (a: nFang.IhouseData, b: nFang.IhouseData): boolean =>
         a.number > b.number
     },
     {
       title: '登记开始时间',
       dataIndex: 'beginTime',
       key: 'beginTime',
-      sorter: (a: cdFang.IhouseData, b: cdFang.IhouseData) =>
+      sorter: (a: nFang.IhouseData, b: nFang.IhouseData) =>
         new Date(a.beginTime).getTime() - new Date(b.beginTime).getTime()
     },
     {
       title: '登记结束时间',
       dataIndex: 'endTime',
       key: 'endTime',
-      sorter: (a: cdFang.IhouseData, b: cdFang.IhouseData) =>
+      sorter: (a: nFang.IhouseData, b: nFang.IhouseData) =>
         new Date(a.endTime).getTime() - new Date(b.endTime).getTime()
     },
     {
@@ -72,7 +72,7 @@ const CommonTable: React.FunctionComponent = () => {
         }
       ],
       filterMultiple: true,
-      onFilter: (value: string, datalist: cdFang.IhouseData) => {
+      onFilter: (value: string, datalist: nFang.IhouseData) => {
         return datalist.status.indexOf(value) === 0;
       },
       render: (text: string) => {

@@ -10,8 +10,8 @@ const { Html } = Guide;
 
 export interface Iprops {
   isChangeTab: boolean;
-  data: cdFang.IhouseData[];
-  changeMonth(origin: cdFang.IcircleItem): void;
+  data: nFang.IhouseData[];
+  changeMonth(origin: nFang.IcircleItem): void;
 }
 
 interface IcircleData {
@@ -25,7 +25,7 @@ const CircleGraph: React.FunctionComponent<Iprops> = ({
   changeMonth
 }) => {
   const selectMonth = (circleObject: {
-    data: { _origin: cdFang.IcircleItem };
+    data: { _origin: nFang.IcircleItem };
   }) => {
     // eslint-disable-next-line no-underscore-dangle
     changeMonth(circleObject.data._origin);

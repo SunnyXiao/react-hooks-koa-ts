@@ -6,7 +6,7 @@ import { HOUSE_NUMBER, BUILDER_NUMBER, RISE_COLOR } from '../../constants';
 
 // 导出给 test 文件
 export interface Iprops {
-  data: cdFang.IhouseData[];
+  data: nFang.IhouseData[];
 }
 
 const DoubleAxisGraph: React.FunctionComponent<Iprops> = ({ data }) => {

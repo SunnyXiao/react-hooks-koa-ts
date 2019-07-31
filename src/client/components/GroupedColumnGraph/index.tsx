@@ -7,7 +7,7 @@ import { Chart, Geom, Axis, Tooltip, Legend } from 'bizcharts';
 
 // 导出给 test 文件使用
 export interface Iprops {
-  data: cdFang.IhouseData[];
+  data: nFang.IhouseData[];
 }
 
 interface ImonthMap {

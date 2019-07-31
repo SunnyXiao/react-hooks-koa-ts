@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 
-export function transformArray(array: string[][]): cdFang.IhouseData[] {
+export function transformArray(array: string[][]): nFang.IhouseData[] {
   const result = array.map(
-    (item): cdFang.IhouseData => ({
+    (item): nFang.IhouseData => ({
       _id: item[0],
       area: item[2],
       name: item[3],

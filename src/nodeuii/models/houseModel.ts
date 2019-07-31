@@ -22,11 +22,11 @@ const houseModel = {
   /**
    *
    * 新增一个房源信息，若存在，则更新
-   * @param {cdFang.IhouseData} item
-   * @returns {(Promise<boolean | cdFang.IhouseData>)}
+   * @param {nFang.IhouseData} item
+   * @returns {(Promise<boolean | nFang.IhouseData>)}
    */
-  async add(item: cdFang.IhouseData): Promise<boolean | cdFang.IhouseData> {
-    let result: boolean | cdFang.IhouseData = item;
+  async add(item: nFang.IhouseData): Promise<boolean | nFang.IhouseData> {
+    let result: boolean | nFang.IhouseData = item;
     const findItem = await this.find({ _id: item._id });
     if (findItem.length > 0) {
       // 如果状态变更执行更新操作
@@ -52,11 +52,11 @@ const houseModel = {
   /**
    *
    * 批量插入房源信息
-   * @param {cdFang.IhouseData[]} array
+   * @param {nFang.IhouseData[]} array
    * @returns {Promise<void>}
    */
-  async addMany(array: cdFang.IhouseData[]): Promise<void> {
-    const newArray: cdFang.IhouseData[] = [];
+  async addMany(array: nFang.IhouseData[]): Promise<void> {
+    const newArray: nFang.IhouseData[] = [];
     // eslint-disable-next-line no-restricted-syntax
     for await (const item of array) {
       const findItem = await this.find({ _id: item._id });
@@ -78,9 +78,9 @@ const houseModel = {
   /**
    *
    * 更新一个房源信息
-   * @param {cdFang.IhouseData} item
+   * @param {nFang.IhouseData} item
    */
-  update(item: cdFang.IhouseData): void {
+  update(item: nFang.IhouseData): void {
     HouseCol.findOneAndUpdate(
       { _id: item._id },
       item,
@@ -96,14 +96,14 @@ const houseModel = {
    *
    *
    * @param {object} [query]
-   * @returns {cdFang.IhouseData[]}
+   * @returns {nFang.IhouseData[]}
    */
-  find(query?: object): cdFang.IhouseData[] {
+  find(query?: object): nFang.IhouseData[] {
     return (HouseCol.find(query, err => {
       if (err) {
         logger.error(JSON.stringify(err));
       }
-    }) as unknown) as cdFang.IhouseData[];
+    }) as unknown) as nFang.IhouseData[];
   }
 };
 

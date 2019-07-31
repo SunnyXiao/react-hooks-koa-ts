@@ -21,7 +21,7 @@ const CurrentYear: React.FunctionComponent<RouteComponentProps> = () => {
     AppContext
   );
 
-  const areasGroup = _.groupBy(allData, (item: cdFang.IhouseData) => item.area);
+  const areasGroup = _.groupBy(allData, (item: nFang.IhouseData) => item.area);
   const areasList = Object.keys(areasGroup);
   const tabpanels = util.sortArea(areasList).map((item: string) => (
     <TabPane tab={item} key={item}>

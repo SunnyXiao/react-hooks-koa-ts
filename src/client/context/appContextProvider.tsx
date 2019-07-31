@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { AppContext, IappContext } from './appContext';
 
 const AppProvider = ({ children }: React.Props<{ value: IappContext }>) => {
-  const changeData = (data: cdFang.IhouseData[]) => {
+  const changeData = (data: nFang.IhouseData[]) => {
     changeAppState(prevState => {
       return {
         ...prevState,

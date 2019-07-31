@@ -5,13 +5,13 @@ import houseModel from '../models/houseModel';
 import config from '../config';
 
 interface Ipage {
-  successArray: cdFang.IhouseData[];
+  successArray: nFang.IhouseData[];
   allLength: number;
 }
 
 export const createRequestPromise = (
   pageNo: number
-): Promise<cdFang.IhouseData[]> => {
+): Promise<nFang.IhouseData[]> => {
   return new Promise(
     (resolve): void => {
       request
@@ -52,7 +52,7 @@ const initspider = async (pageStart: number, pageEnd: number) => {
   }
 
   const result = await Promise.all(allPromises).then(
-    (posts: cdFang.IhouseData[][]): cdFang.IhouseData[] => {
+    (posts: nFang.IhouseData[][]): nFang.IhouseData[] => {
       houseModel.addMany(posts[0]);
       return posts[0];
     }
@@ -61,9 +61,9 @@ const initspider = async (pageStart: number, pageEnd: number) => {
 };
 
 const spiderPage = async (pageNo: number = 1): Promise<Ipage> => {
-  const page: cdFang.IhouseData[] = await createRequestPromise(pageNo);
+  const page: nFang.IhouseData[] = await createRequestPromise(pageNo);
   const promises = page.map(
-    (item): Promise<cdFang.IhouseData | boolean> =>
+    (item): Promise<nFang.IhouseData | boolean> =>
       new Promise(
         (resolve): void => {
           resolve(houseModel.add(item));
@@ -72,7 +72,7 @@ const spiderPage = async (pageNo: number = 1): Promise<Ipage> => {
   );
   const successArray = await Promise.all(promises)
     .then(
-      posts => posts.filter((item): boolean => !!item) as cdFang.IhouseData[]
+      posts => posts.filter((item): boolean => !!item) as nFang.IhouseData[]
     )
     .catch(() => []);
   return {

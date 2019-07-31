@@ -1,4 +1,4 @@
-declare namespace cdFang {
+declare namespace nFang {
   interface IhouseData {
     _id: string;
     __v?: number;
@@ -31,5 +31,13 @@ declare namespace cdFang {
     item: string;
     number: number;
     percent: number;
+  }
+
+  interface IuserItem {
+    _id: string;
+    name: string,
+    password: string,
+    pin: number,
+    lastLoginAt: Date
   }
 }

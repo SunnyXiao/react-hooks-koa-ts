@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import config from '../config';
 
 interface IallHouses {
-  allHouses: cdFang.IhouseData[];
+  allHouses: nFang.IhouseData[];
 }
 
 interface Ipvs {

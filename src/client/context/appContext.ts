@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 export interface IappContext {
-  allData: cdFang.IhouseData[];
+  allData: nFang.IhouseData[];
   activityKey: string;
   selectedYear: number;
   isLoading: boolean;
-  changeData(data: cdFang.IhouseData[]): void;
+  changeData(data: nFang.IhouseData[]): void;
   changeActivityKey(key: string): void;
   changeSelectedYear(key: number): void;
   changeLoading(isLoading: boolean): void;

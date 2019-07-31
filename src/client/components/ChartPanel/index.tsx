@@ -13,7 +13,7 @@ const { useState, useContext } = React;
 let currentState: Istate;
 
 export interface Iprops {
-  data: cdFang.IhouseData[];
+  data: nFang.IhouseData[];
   panelKey: string;
   activityKey: string;
 }
@@ -21,7 +21,7 @@ export interface Iprops {
 interface Istate {
   isChangeTab: boolean;
   isOpen: boolean;
-  rank: cdFang.IhouseData[];
+  rank: nFang.IhouseData[];
   rankTitle: string;
 }
 
@@ -49,7 +49,7 @@ const ChartPanel: React.FunctionComponent<Iprops> = props => {
     setPrevData(data);
   }
 
-  function changeMonth(origin: cdFang.IcircleItem) {
+  function changeMonth(origin: nFang.IcircleItem) {
     const { rankTitle, isOpen } = currentState;
 
     if (rankTitle === origin.item && isOpen) {

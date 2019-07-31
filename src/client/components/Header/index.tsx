@@ -24,7 +24,7 @@ const Header: React.FunctionComponent<RouteComponentProps> = ({
 
   const requestDataWrapper = (year: string) => {
     appState.changeLoading(true);
-    requestData(year, (allHouses: cdFang.IhouseData[]) => {
+    requestData(year, (allHouses: nFang.IhouseData[]) => {
       appState.changeData(allHouses);
       appState.changeLoading(false);
     });
@@ -52,9 +52,9 @@ const Header: React.FunctionComponent<RouteComponentProps> = ({
   };
 
   return (
-    <div className="cdfang-header">
-      <div className="cdfang-header-item">
-        <span className="cdfang-header-item-pv">{`累计查询：${pvs}次`}</span>
+    <div className="nFang-header">
+      <div className="nFang-header-item">
+        <span className="nFang-header-item-pv">{`累计查询：${pvs}次`}</span>
         <Notice />
         <Icon type="github" onClick={gotoGithub} />
       </div>
