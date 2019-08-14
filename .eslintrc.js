@@ -34,6 +34,7 @@ module.exports = {
       "files": ["*.ts"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/no-var-requires": "off"
       }
     },
     {

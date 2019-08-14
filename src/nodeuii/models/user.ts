@@ -27,7 +27,12 @@ const UserSchema = new mongoose.Schema({
   },
   // 上一次登录时间
   lastLoginAt: {
-    type: Date
+    type: Date,
+    default: Date.now()
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
   }
 });
 

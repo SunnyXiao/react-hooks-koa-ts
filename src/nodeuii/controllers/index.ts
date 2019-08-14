@@ -57,7 +57,7 @@ router
     }
   )
   // 支持 browserRouter
-  .get(/\/20[1-9][0-9]/, ctx => {
+  .get(/\/20[1-9][0-9]|\/login/, ctx => {
     const file = fs.readFileSync(path.join('client/index.html'));
     ctx.set('Content-Type', 'text/html; charset=utf-8');
     ctx.body = file;

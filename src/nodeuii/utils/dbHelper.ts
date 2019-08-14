@@ -5,6 +5,7 @@ import config from '../config/index';
 let connectTimeOut: NodeJS.Timeout;
 
 const DbHelper = {
+  ObjectId: mongoose.Types.ObjectId,
   connectTimes: 8,
   connect(): mongoose.Mongoose {
     if (process.env.NODE_ENV !== 'test') {
