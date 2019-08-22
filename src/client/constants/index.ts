@@ -15,6 +15,7 @@ export const tabKeyRouterMap: { [x: string]: string } = {
   '2019': '/2019',
   '2018': '/2018',
   '2017': '/2017',
+  'login': '/login',
   home: '/',
   '/2019': '2019',
   '/2018': '2018',

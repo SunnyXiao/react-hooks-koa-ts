@@ -17,8 +17,9 @@
 
 // module.exports = typeDefs
 
-const houseTypeDef = require('./typeDefs/house')
+const houseTypeDef = require('./typeDefs/house');
+const userTypeDef = require('./typeDefs/user');
 
-const typeDefs = [houseTypeDef]
+const typeDefs = [houseTypeDef, userTypeDef]
 
 module.exports = typeDefs

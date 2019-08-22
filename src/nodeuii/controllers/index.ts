@@ -57,8 +57,13 @@ router
     }
   )
   // 支持 browserRouter
-  .get(/\/20[1-9][0-9]|\/login/, ctx => {
-    const file = fs.readFileSync(path.join('client/index.html'));
+  // .get(/\/20[1-9][0-9]|\/graphql/
+  .get(/\/login/, ctx => {
+    // console.log('login:', ctx)
+    console.log('寻找文件:', path.resolve(__dirname, '../../client', 'index.html'))
+    const file = fs.readFileSync(path.resolve(__dirname, '../../client', 'index.html'))
+
+    // const file = fs.readFileSync(path.join('/index.html'));
     ctx.set('Content-Type', 'text/html; charset=utf-8');
     ctx.body = file;
   });

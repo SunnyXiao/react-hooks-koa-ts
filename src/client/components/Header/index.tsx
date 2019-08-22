@@ -37,7 +37,7 @@ const Header: React.FunctionComponent<RouteComponentProps> = ({
     });
 
     // 获取房源信息
-    requestDataWrapper(selectedYear);
+    // requestDataWrapper(selectedYear);
   }, []);
 
   // 根据理由选中对应 menu 项
@@ -51,12 +51,17 @@ const Header: React.FunctionComponent<RouteComponentProps> = ({
     }
   };
 
+  const goLogin = () => {
+    history.push('/login')
+  }
+
   return (
     <div className="nFang-header">
       <div className="nFang-header-item">
         <span className="nFang-header-item-pv">{`累计查询：${pvs}次`}</span>
         <Notice />
         <Icon type="github" onClick={gotoGithub} />
+        <Icon type="login" onClick={goLogin} />
       </div>
       <Menu
         theme="light"

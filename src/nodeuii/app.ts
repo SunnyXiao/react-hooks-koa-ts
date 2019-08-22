@@ -37,6 +37,7 @@ controller.init(app);
 // 静态资源目录
 app.use(serve('client'));
 
+
 // eslint-disable-next-line no-console
 console.log(`server is running at : http://localhost:${config.serverPort}`);
 

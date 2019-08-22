@@ -11,7 +11,7 @@ const devConfig = {
   mode: 'development',
   output: {
     path: path.resolve('./dist/client'),
-    filename: '[name].js'
+    filename: '[name].bundle.js'
   },
   devServer: {
     hot: true,

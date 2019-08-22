@@ -15,9 +15,9 @@ const baseConfig = require('./webpack.base.config');
 const prodConfig = {
   mode: 'production',
   output: {
-    publicPath: qiniuConfig.publicPath,
+    publicPath: '/', // qiniuConfig.publicPath,
     path: path.resolve('./dist/client'),
-    filename: 'cdfang-spider-[name]-[contenthash:8].js'
+    filename: '[name]-[contenthash:8].js'
   },
   module: {
     rules: [
@@ -39,7 +39,7 @@ const prodConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'cdfang-spider-[name].[hash:8].css'
+      filename: '[name].[hash:8].css'
     }),
     new WebpackDeepScopeAnalysisPlugin(),
     // 开启 scope hosting，production 默认是开启状态
@@ -85,7 +85,7 @@ const prodConfig = {
 
 // ci 环境不上传 cdn
 if (process.env.BUILD_ENV !== 'ci' && process.env.BUILD_ENV !== 'analysis') {
-  prodConfig.plugins.push(new QiniuUploadPlugin(qiniuConfig));
+  // prodConfig.plugins.push(new QiniuUploadPlugin(qiniuConfig));
 }
 
 module.exports = merge(baseConfig, prodConfig);

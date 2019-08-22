@@ -38,6 +38,8 @@ declare namespace nFang {
     name: string,
     password: string,
     pin: number,
-    lastLoginAt: Date
+    status: number,
+    lastLoginAt: Date,
+    createdAt: Date
   }
 }

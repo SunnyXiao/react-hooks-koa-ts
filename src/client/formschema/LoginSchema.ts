@@ -5,17 +5,22 @@ const LoginSchema = [
     label: '用户名',
     value: '',
     type: 'text',
-    inputtype: 'text',
+    placeholder: '用户名',
     class: 'form-item',
-    rules: []
+    disabled: false,
+    rules: [{
+      required: true,
+      message: 'Please input your name!',
+    }]
   },
   {
     field: 'password',
     key: 'password',
     label: '密码',
     value: '',
-    type: 'text',
-    inputtype: 'password',
+    type: 'password',
+    placeholder: '密码',
+    disabled: false,
     class: 'form-item',
     rules: []
   },
@@ -24,8 +29,9 @@ const LoginSchema = [
     key: 'pin',
     label: 'PIN码',
     value: '',
-    type: 'text',
-    inputtype: 'number',
+    type: 'int',
+    placeholder: 'PIN码',
+    disabled: false,
     class: 'form-item',
     rules: []
   }

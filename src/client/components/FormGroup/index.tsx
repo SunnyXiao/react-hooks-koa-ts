@@ -1,9 +1,11 @@
 
 import React from "react";
-import { Button, Form, Input, InputNumber, DatePicker, Select } from "antd";
+import { Radio, Form, Input, InputNumber,
+  DatePicker, Select, Button } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 
 const FormItem = Form.Item
+const { Option } = Select
 // 默认的layout
 export const defaultLabelColSpan = 6
 
@@ -16,17 +18,18 @@ interface FormProps extends FormComponentProps {
   layout: object,
   schema: NFormItemProps[],
   hideRequiredMark: boolean,
-  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void,
-  onChange?: (value: string) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+  handleChange: (value: any, name: string) => void,
+  handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
+  handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 interface NFormItemProps {
   type: string,
   label: string,
   key: string,
   value: any,
-  inputtype: string,
+  disabled: boolean,
+  placeholder: string,
   rules: object | object[],
   options?: (object|number|string)[]
 }
@@ -37,61 +40,100 @@ interface FormItemProps {
   getFieldDecorator: any
 }
 
-const switchItem = (item: NFormItemProps): React.ReactNode => {
-  const {type, options} = item;
-  switch (type) {
-    case 'int':
-      return <InputNumber style={{ width: '100%' }} />
-    case 'text':
-      return <Input />;
-    case 'date':
-      return <DatePicker style={{ width: '100%' }} />;
-    case 'select':
-      return (
-        <Select>
-          {
-            options.map((option: any, index: number) => {
-              return (<Option key={index} value={option}>{option}</Option>)
-            })
-          }
-        </Select>
-      )
-    default:
-      return <Input />
-  }
-}
-
-const renderFormItem:React.FC<FormItemProps> = ({item, layout, getFieldDecorator }) => {
-  const { label, key, rules, value } = item
-  return (
-    <FormItem key={key} label={label} {...layout}>
-      {
-        getFieldDecorator(key, {
-          initialValue: value,
-          rules
-        })(
-          switchItem(item)
-        )
-      }
-    </FormItem>
-  )
-}
 
 const  MyForm: React.FunctionComponent<FormProps> = (props) =>{
-  const {form, layout, schema} = props
+  const {form, layout, schema, handleChange, handleSubmit} = props
   const { getFieldDecorator } = form
-  return (
-    <Form>
-      {
-      schema.map( item => renderFormItem({item, layout, getFieldDecorator}))
+
+  {/**form item */}
+  const renderFormItem:React.FC<FormItemProps> = ({item, layout, getFieldDecorator }) => {
+    const { label, key, rules, value } = item
+    return (
+      <FormItem key={key} label={label} {...layout}>
+        {
+          getFieldDecorator(key, {
+            validateTrigger: "onBlur",
+            initialValue: value,
+            rules
+          })(
+            switchItem(item)
+          )
+        }
+      </FormItem>
+    )
+  }
+  {/** input、select... */}
+  const switchItem = (item: NFormItemProps): React.ReactNode => {
+    const {type, options, placeholder} = item;
+    switch (type) {
+      case 'int':
+        return <InputNumber style={{ width: '100%' }} placeholder= {placeholder}
+        onChange = {value => handleChange(value, item.key)} />
+      case 'text':
+        return <Input placeholder= {placeholder}
+        onChange = {value => handleChange(value, item.key)} />;
+      case 'password':
+        return <Input type='password' placeholder= {placeholder}
+        onChange = {value => handleChange(value, item.key)}/>
+      case 'date':
+        return <DatePicker style={{ width: '100%' }} placeholder= {placeholder}
+        onChange = {value => handleChange(value, item.key)} />;
+      case 'select':
+        return (
+          <Select placeholder= {placeholder} onChange = {value => handleChange(value, item.key)}>
+            {
+              options && options.map((option: any, index: number) => {
+                return (<Option key={index} value={option}>{option}</Option>)
+              })
+            }
+          </Select>
+        )
+      case 'radio':
+        return (
+          <Radio.Group onChange = {value => handleChange(value, item.key)}>
+            {
+              options && options.map((option: any, index: number) => {
+                return (<Radio key={index} value={option}>{option}</Radio>)
+              })
+            }
+          </Radio.Group>
+        )
+      default:
+        return <Input placeholder= {placeholder}
+        onChange = {value => handleChange(value, item.key)} />
+    }
+  }
+
+  const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        // handleSubmit()
       }
+    })
+  }
+
+  return (
+    <Form onSubmit={onHandleSubmit}>
+      {
+        schema.map( item => renderFormItem({item, layout, getFieldDecorator}))
+      }
+      <FormItem>
+          <Button type="primary" htmlType="submit">
+            Register
+          </Button>
+        </FormItem>
     </Form>
   )
 }
 MyForm.defaultProps = {
   layout: defaultFormItemLayout,
   hideRequiredMark: false,
-  onSubmit(){}
+  handleSubmit(){},
+  handleChange(){},
+  handleBlur(){},
+  handleFocus(){}
 }
 
 export default Form.create<FormProps>()(MyForm)
