@@ -1,3 +1,4 @@
+// 对于项目中常用到的接口数据对象，在types/目录下定义好其结构化类型声明
 declare namespace nFang {
   interface IhouseData {
     _id: string;
