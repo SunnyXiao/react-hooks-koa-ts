@@ -3,17 +3,19 @@ import { Button, Form } from "antd";
 import { RouteComponentProps } from 'react-router';
 import MyForm from '../../components/FormGroup'
 import LoginSchema from '../../formschema/LoginSchema'
+import {requestAddUser} from '../../utils/request'
 
 const LoginForm: React.FunctionComponent<RouteComponentProps> = () => {
   let formRef: any
   const onHandleChange = (val: any, name: string) => {
     console.log(val)
   }
-  const onHandleSubmit = () => {
-
+  const onHandleSubmit = (data: any) => {
+    requestAddUser(data.name,data.password,(user: nFang.IuserItem):void => {
+      console.log('success:', user)
+    })
   }
   const onFormClick =() => {
-    console.log(formRef)
     formRef.onHandleSubmit()
   }
   return (

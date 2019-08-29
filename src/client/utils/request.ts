@@ -12,7 +12,7 @@ interface Ipvs {
 const { getGraphqlClient } = config;
 
 export function requestData(year: string, callback: Function): void {
-  const yearParam = year === 'home' ? '0' : year;
+  const yearParam = year == undefined ? '0' : year;
 
   getGraphqlClient()
     .query<IallHouses>({
@@ -32,7 +32,7 @@ export function requestData(year: string, callback: Function): void {
     })
     .then(result => {
       callback(result.data.allHouses);
-    });
+    })
 }
 
 export function requestPvs(callback: Function): void {
@@ -47,4 +47,27 @@ export function requestPvs(callback: Function): void {
     .then(result => {
       callback(result.data.pvs);
     });
+}
+
+
+export function requestAddUser(name: string, password: string, callback: Function): void {
+  getGraphqlClient()
+  .mutate<nFang.IuserItem>({
+    variables: {user: { name, password }},
+    mutation: gql`
+      mutation addUser($user: UserInput){
+        addUser(user: $user) {
+          name,
+        }
+      }
+    `
+  }).then(result => {
+    callback(result)
+    console.log(result)
+  })
+  .catch(e => {
+    let error = e.graphQLErrors[0]
+    callback(error)
+    console.log('ee:', error)
+  })
 }

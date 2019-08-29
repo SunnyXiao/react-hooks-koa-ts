@@ -37,7 +37,7 @@ const Header: React.FunctionComponent<RouteComponentProps> = ({
     });
 
     // 获取房源信息
-    // requestDataWrapper(selectedYear);
+    requestDataWrapper(selectedYear);
   }, []);
 
   // 根据理由选中对应 menu 项

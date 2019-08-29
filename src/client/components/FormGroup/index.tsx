@@ -19,7 +19,8 @@ interface FormProps extends FormComponentProps {
   layout: object,
   schema: NFormItemProps[],
   hideRequiredMark: boolean,
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+  // handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+  handleSubmit: (values: Object) => void,
   handleChange: (value: any, name: string) => void,
   handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
   handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -55,7 +56,6 @@ class MyForm extends React.Component<FormProps, any> {
 
   constructor(props: FormProps) {
     super(props);
-    console.log(!props.form, 'Form', 'It is unnecessary to pass `form` to `Form` after antd@1.7.0.');
   }
 
   switchItem = (item: NFormItemProps): React.ReactNode => {
@@ -113,8 +113,7 @@ class MyForm extends React.Component<FormProps, any> {
     // e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        // handleSubmit()
+       this.props.handleSubmit(values)
       }
     })
   }

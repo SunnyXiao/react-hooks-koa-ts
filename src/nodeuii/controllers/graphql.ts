@@ -7,7 +7,16 @@ const resolvers = require('../graphql/resolvers')
 function initGraphQL(app: Koa): void {
   const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    formatError: (error) => {
+      // 删除 extensions 字段，删除异常的堆栈，不暴露服务器发生错误的文件
+      // delete error.extensions;
+      return {
+        code: error.extensions.code,
+        status: error.status,
+        message: error.message
+      }
+    }
     // context: ({req}) => {
     //   // get the user token from the headers
     //   const token = req.headers.authorization || '';

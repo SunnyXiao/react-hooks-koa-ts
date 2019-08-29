@@ -1,14 +1,20 @@
 import log4js from 'log4js';
 import DbHelper from '../utils/dbHelper';
+const bcrypt=require('bcrypt')
 
 const mongoose = DbHelper.connect();
 const logger = log4js.getLogger('globallog');
+const ObjectId = DbHelper.ObjectId
 
 // 创建数据库
 const UserSchema = new mongoose.Schema({
-  _id: String,
+  _id: {
+    type: ObjectId,
+    unique:true
+  },
   name: {
     type: String,
+    unique:true,
     require: [true, '必须提供用户名'],
     min: [6, '用户名必须有6个字符以上'],
     max: [50, '用户名不能超过50个字符'],
@@ -40,6 +46,18 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
+UserSchema.pre('save', function(next) {
+  let user = this
+  bcrypt.hash(user.password, 10, function(err, hash) {
+    if (err) {
+      return next(err)
+    }
+    user.password=hash
+    console.log('user:', user)
+		next()
+  })
+})
+
 // 创建表
 const UserCol = mongoose.model('user', UserSchema);
 
@@ -48,18 +66,23 @@ const userModel = {
    * 新增用户
    * @param user
    */
-  async add (user: nFang.IuserItem): Promise<boolean | nFang.IuserItem> {
-    let result: boolean | nFang.IuserItem = user
+  async add (user: nFang.IuserItem): Promise<object | nFang.IuserItem> {
+    let result: object | nFang.IuserItem = user
     const findUser = await this.find({name: user.name})
     if (findUser.length > 0) {
-      result = false
+      result = {code: 400, msg: '用户已存在'}
+      throw new Error('用户已存在')
     } else {
       const nUser = new UserCol(user)
-      result = await new Promise(resolve => {
-        nUser.save(err => {
+      nUser._id = ObjectId()
+      result = await new Promise((resolve, reject) => {
+        nUser.save((err, data) => {
           if(err) {
             logger.error(JSON.stringify(err));
-            resolve(false);
+            reject( {code: 500, msg: '数据错误'});
+            throw new Error(JSON.stringify(err))
+          } else {
+            resolve(data)
           }
         })
       })
