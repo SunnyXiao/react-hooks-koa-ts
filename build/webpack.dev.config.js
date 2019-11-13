@@ -26,21 +26,27 @@ const devConfig = {
     }
   },
   module: {
-    rules: [
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              javascriptEnabled: true
-            }
+    rules: [{
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader'
+      ]},
+    {
+      test: /\.less$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'postcss-loader',
+        {
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true
           }
-        ]
-      }
+        }
+      ]
+    }
     ]
   },
   plugins: [

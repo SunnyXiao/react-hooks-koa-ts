@@ -20,7 +20,8 @@ module.exports = {
   plugins: ["@typescript-eslint", "react", "react-hooks", "prettier"],
   rules: {
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    'import/prefer-default-export': [0] // 不提醒 default export
   },
   // 解决不能直接默认导入 ts 文件 的问题。import/no-unresolved
   settings: {

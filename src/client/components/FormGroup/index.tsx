@@ -101,7 +101,7 @@ class MyForm extends React.Component<FormProps, any> {
            getFieldDecorator(field, {
             validateTrigger: "onBlur",
             initialValue: value,
-             rules
+            rules
            })(
              this.switchItem(item)
            )
