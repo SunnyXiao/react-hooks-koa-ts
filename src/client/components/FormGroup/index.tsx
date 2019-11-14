@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Radio, Form, Input, InputNumber,
-  DatePicker, Select, Button } from "antd";
+  DatePicker, Select, Button,Icon } from "antd";
 import { FormComponentProps, ValidationRule } from "antd/lib/form";
 
 const FormItem = Form.Item
@@ -33,6 +33,7 @@ interface NFormItemProps {
   type: string,
   disabled: boolean,
   placeholder: string,
+  iconType: string,
   class: string,
   rules?: ValidationRule[],
   options?: (object|number|string)[]
@@ -59,14 +60,14 @@ class MyForm extends React.Component<FormProps, any> {
   }
 
   switchItem = (item: NFormItemProps): React.ReactNode => {
-    const {type, options, placeholder} = item;
+    const {type, options, placeholder,iconType} = item;
     switch (type) {
       case 'int':
         return <InputNumber style={{ width: '100%' }} placeholder= {placeholder} />
       case 'text':
-        return <Input placeholder= {placeholder} allowClear />;
+        return <Input placeholder= {placeholder} prefix={iconType?<Icon type={iconType} />:''} allowClear />;
       case 'password':
-        return <Input type='password' placeholder= {placeholder} allowClear />
+        return <Input type='password' placeholder= {placeholder} prefix={iconType?<Icon type={iconType} />:''} allowClear />
       case 'date':
         return <DatePicker style={{ width: '100%' }} placeholder= {placeholder} />;
       case 'select':
@@ -111,11 +112,11 @@ class MyForm extends React.Component<FormProps, any> {
   }
   onHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // e.preventDefault()
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-       this.props.handleSubmit(values)
-      }
-    })
+    // this.props.form.validateFieldsAndScroll((err, values) => {
+    //   if (!err) {
+       this.props.handleSubmit(e)
+    //   }
+    // })
   }
 
   render(){

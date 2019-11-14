@@ -5,6 +5,7 @@ import Loading from './components/Loading';
 import AppContextProvider from './context/appContextProvider';
 import { LOADING_TIP } from './constants';
 import Routes from './router';
+import './icons.js'
 
 const { lazy, Suspense } = React;
 

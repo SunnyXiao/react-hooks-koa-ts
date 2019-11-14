@@ -7,6 +7,7 @@ const LoginSchema = [
     type: 'text',
     placeholder: '用户名',
     class: 'form-item',
+    iconType:'user',
     disabled: false,
     rules: [{
       required: true,
@@ -22,6 +23,7 @@ const LoginSchema = [
     placeholder: '密码',
     disabled: false,
     class: 'form-item',
+    iconType:'lock',
     rules: []
   },
   {
@@ -33,6 +35,7 @@ const LoginSchema = [
     placeholder: 'PIN码',
     disabled: false,
     class: 'form-item',
+    iconType: '',
     rules: []
   }
 ]

@@ -1,24 +1,35 @@
 import * as React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import routers from './routerConfig';
+import { AppContext } from './context/appContext';
 
-import Home from './containers/Home';
-
-const  { lazy } = React
-const CurrentYear = lazy(() => import('./containers/CurrentYear'))
-const PastYear = lazy(() => import('./containers/PastYear'))
-const Login = lazy(() => import('./containers/Login'))
+const  { lazy, useContext } = React
 
 function Routes() {
-  return (
+  const {userName} = useContext(AppContext)
+  return(
     <Switch>
-      <Route exact path="/" render={() => <Redirect to='/home'></Redirect>}></Route>
-      <Route path="/home" component={Home} exact />
-      <Route path="/login" component={Login} />
-      <Route path="/2019" component={CurrentYear} exact />
-      <Route path="/2018" component={PastYear} exact />
-      <Route path="/2017" component={PastYear} exact />
+      {
+        routers.map((item,index) => {
+          const DynamicComponent =lazy(() => import(`${item.component}/index`))
+          return <Route key={index} path={item.path} exact render={props =>(
+            <div>
+              {
+                !item.auth
+                ? (item.name=="Login" && userName
+                  ? (<Redirect to={{ pathname: "/home"}}/>)
+                  :<DynamicComponent {...props} />)
+                : (userName
+                    ? (<DynamicComponent {...props} />)
+                    : (<Redirect to={{ pathname: "/login", state: {from: props.location}
+                    }}/>)
+                )
+              }
+            </div>
+          )}></Route>
+        })
+      }
     </Switch>
-  );
+  )
 }
-
 export default Routes;

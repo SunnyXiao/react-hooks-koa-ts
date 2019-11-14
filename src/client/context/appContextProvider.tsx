@@ -39,12 +39,23 @@ const AppProvider = ({ children }: React.Props<{ value: IappContext }>) => {
     });
   };
 
+  const changeUserName = (name: string) => {
+    changeAppState(prevState =>{
+      return {
+        ...prevState,
+        name
+      }
+    })
+  }
+
   const initAppState: IappContext = {
     allData: [],
     activityKey: '天府新区',
     selectedYear: 0,
     isLoading: false,
+    userName: '',
     changeData,
+    changeUserName,
     changeActivityKey,
     changeSelectedYear,
     changeLoading

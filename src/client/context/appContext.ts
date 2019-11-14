@@ -1,3 +1,8 @@
+/**
+ * When to Use Context
+ * Context is designed to share data that can be considered “global” for a tree of React components,
+ * such as the current authenticated user, theme, or preferred language.
+ */
 import * as React from 'react';
 
 export interface IappContext {
@@ -5,6 +10,8 @@ export interface IappContext {
   activityKey: string;
   selectedYear: number;
   isLoading: boolean;
+  userName: string;
+  changeUserName (name: string): void;
   changeData(data: nFang.IhouseData[]): void;
   changeActivityKey(key: string): void;
   changeSelectedYear(key: number): void;
@@ -17,6 +24,8 @@ export const globalData: IappContext = {
   activityKey: '天府新区',
   selectedYear: 0,
   isLoading: false,
+  userName: '',
+  changeUserName (){},
   changeData() {},
   changeActivityKey() {},
   changeSelectedYear() {},
