@@ -43,7 +43,7 @@ const AppProvider = ({ children }: React.Props<{ value: IappContext }>) => {
     changeAppState(prevState =>{
       return {
         ...prevState,
-        name
+        userName: name
       }
     })
   }
@@ -53,7 +53,7 @@ const AppProvider = ({ children }: React.Props<{ value: IappContext }>) => {
     activityKey: '天府新区',
     selectedYear: 0,
     isLoading: false,
-    userName: '',
+    userName: 'huangfax',
     changeData,
     changeUserName,
     changeActivityKey,

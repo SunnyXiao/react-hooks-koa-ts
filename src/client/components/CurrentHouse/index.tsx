@@ -7,10 +7,10 @@ import { RenderLoadingComponent } from '../HOC/RenderLoadingComponent';
 import LinkToMap from '../LinkToMap';
 import './styles.less';
 
-const { useContext } = React;
+const { useContext,useEffect,useState } = React;
 const { Panel } = Collapse;
 
-const CurrentHouse: React.FunctionComponent = () => {
+const CurrentHouse: React.FunctionComponent = (props) => {
   const { allData } = useContext(AppContext);
   const currentHouses = allData
     .filter(item => item.status !== '报名结束')
@@ -42,6 +42,11 @@ const CurrentHouse: React.FunctionComponent = () => {
         </Row>
       </div>
     ));
+
+  const [profileState, setProfileState] = useState(props.testData);
+  useEffect(() => {
+    setProfileState(props.testData);
+  }, [props.testData]);
 
   return (
     <Collapse defaultActiveKey={['1']}>

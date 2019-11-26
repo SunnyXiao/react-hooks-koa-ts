@@ -3,7 +3,7 @@ const babel = require('gulp-babel');
 
 
 gulp.task('default', () => gulp
-  .src('./src/nodeuii/**/*.ts')
+  .src('./src/nodeui-graphql/**/*.ts')
   .pipe(
     // 使用 .babelrc 配置
     babel()
@@ -11,5 +11,5 @@ gulp.task('default', () => gulp
   .pipe(gulp.dest('./dist/serve')));
 
 if (process.env.NODE_ENV !== 'production') {
-  gulp.watch('./src/nodeuii/**/*.ts', gulp.series('default'));
+  gulp.watch('./src/nodeui-graphql/**/*.ts', gulp.series('default'));
 }

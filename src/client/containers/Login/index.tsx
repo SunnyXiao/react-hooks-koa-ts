@@ -20,10 +20,11 @@ const LoginForm: React.FunctionComponent<RouteComponentProps> = ({history}) => {
   const onHandleSubmit = (data: any) => {
     requestAddUser(data.name,data.password,(user: nFang.IuserItem):void => {
       console.log('success:', user)
+      appState.changeUserName(data.name)
       if(user.message == "用户已存在"){
         history.push('/home')
       }
-      appState.changeUserName(data.name)
+
     })
   }
   const onFormClick =(e) => {

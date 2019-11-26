@@ -9,6 +9,7 @@ const analyticsHander = {
     // 捕获 请求
     app.use(async (ctx: Koa.Context, next: Function) => {
       logger.info(ctx.req.url);
+      console.log('ctx:', ctx)
       if (ctx.method !== 'OPTIONS') {
         // graphql 请求
         if (ctx.request.url === '/graphql' && ctx.request.body.query) {
