@@ -1,0 +1,38 @@
+{
+  "name": "node-koa-restful-api",
+  "version": "1.0.0",
+  "description": "node-koa-restful-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SunnyXiao/react-hooks-koa-ts.git"
+  },
+  "keywords": [
+    "node-koa-router"
+  ],
+  "author": "Luisa.Xiao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SunnyXiao/react-hooks-koa-ts/issues"
+  },
+  "homepage": "https://github.com/SunnyXiao/react-hooks-koa-ts#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.4.0",
+    "koa-unless": "^1.0.7",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.7.12"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "log4js": "^6.1.0"
+  }
+}

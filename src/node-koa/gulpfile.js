@@ -3,13 +3,13 @@ const babel = require('gulp-babel');
 
 
 gulp.task('default', () => gulp
-  .src('./src/nodeui-graphql/**/*.ts')
+  .src('./src/**/*.ts')
   .pipe(
     // 使用 .babelrc 配置
     babel()
   )
-  .pipe(gulp.dest('./dist/serve-graphql')));
+  .pipe(gulp.dest('../../dist/serve-restful')));
 
 if (process.env.NODE_ENV !== 'production') {
-  gulp.watch('./src/nodeui-graphql/**/*.ts', gulp.series('default'));
+  gulp.watch('./src/**/*.ts', gulp.series('default'));
 }
